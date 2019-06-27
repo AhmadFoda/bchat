@@ -17,7 +17,7 @@ from flask import Flask, request, abort
 app = Flask(__name__)
 
 
-@app.route("/message", methods=['POST'])
+@app.route("/message", methods=['GET', 'POST'])
 def receive_large_interactive_payload():
     # here we are sending and receiving the interactive payload
 
