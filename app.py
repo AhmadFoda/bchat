@@ -1,11 +1,12 @@
 from flask import Flask, request, render_template
-
 app = Flask(__name__)
 
 
-@app.route('/message')
+@app.route('/landing')
 def landingPage():
-    return receive_large_interactive_payload();
+    # return render_template("landingPage.html")
+
+    return receive_message();
 
 if __name__ == '__main__':
     app.run()
