@@ -22,4 +22,4 @@ def get_jwt_token():
     return jwt_token
 
 if __name__ == '__main__':
-    print get_jwt_token()
+    print (get_jwt_token())
