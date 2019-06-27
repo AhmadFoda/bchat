@@ -138,6 +138,5 @@ def receive_large_interactive_payload():
     return r.text
 
 
-app.run(host='127.0.0.1', port=5000)
-
-# Expected output:
+if __name__ == '__main__':
+    app.run()
