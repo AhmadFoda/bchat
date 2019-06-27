@@ -6,7 +6,7 @@ import gzip
 import json
 import jwt
 import requests
-import StringIO
+import io
 
 from attachment_cipher import decrypt, encrypt
 from config import BIZ_ID, BUSINESS_CHAT_SERVER, CSP_ID, SECRET
@@ -24,15 +24,15 @@ def receive_large_interactive_payload():
     # Verify the authentication
     try:
         authorization = request.headers.get("Authorization")
-        print authorization
+        print(authorization)
     except TypeError as e:
-        print "\nSYSTEM: jwt_token get error: %s" % e
+        print("\nSYSTEM: jwt_token get error: %s" % e)
         abort(400)
 
     try:
         jwt_token = authorization[7:]    # <-- skip the Bearer prefix
     except TypeError as etype:
-        print "\nSYSTEM: jwt_token authorization error: %s" % etype
+        print("\nSYSTEM: jwt_token authorization error: %s" % etype)
         abort(400)
 
     try:
@@ -40,38 +40,38 @@ def receive_large_interactive_payload():
                    key=base64.b64decode(SECRET),
                    audience=CSP_ID)
     except Exception as e:
-        print "\nSYSTEM: Authorization failed, error message: %s" % e
+        print("\nSYSTEM: Authorization failed, error message: %s" % e)
         abort(403)
 
     # read the Gzip data
 
-    fileobj = StringIO.StringIO(request.data)
+    fileobj = io.StringIO(request.data)
     uncompressed = gzip.GzipFile(fileobj=fileobj, mode='rb')
 
     try:
         payj = uncompressed.read()
-        print payj
+        print(payj)
     except IOError as eio:
-        print "\nSYSTEM: Payload decompression error: %s" % eio
+        print("\nSYSTEM: Payload decompression error: %s" % eio)
         abort(400)
 
     # decode JSON
     try:
-        print "request arg ==> "
-        print json.dumps(request.form.to_dict())
+        print("request arg ==> ")
+        print(json.dumps(request.form.to_dict()))
         payload  = json.loads(json.dumps(request.form.to_dict()))
         # payload = json.dump(payload, StringIO('["streaming API"]'))
 
-        print type(payload)
+        print(type(payload))
     except ValueError as eve:
-        print "\nSYSTEM: Payload decode error: %s" % eve
+        print("\nSYSTEM: Payload decode error: %s" % eve)
         abort(400)
 
-    print "payload %s" % payload
+    print("payload %s" % payload)
     message_type = payload.get("type")
-    print message_type;
+    print(message_type);
     if message_type != "interactive":
-        print "Received a %s instead of an interactive ..." % message_type
+        print("Received a %s instead of an interactive ..." % message_type)
     else:
         jdataref = payload["interactiveDataRef[url]"]
 
@@ -94,20 +94,20 @@ def receive_large_interactive_payload():
             "MMCS-Signature": base64_encoded_signature,
             "MMCS-Owner": mmcs_owner
         }
-        print "pre download headers ==>"
-        print predownload_headers
+        print("pre download headers ==>")
+        print(predownload_headers)
         r = requests.get("%s/preDownload" % BUSINESS_CHAT_SERVER,
                          headers=predownload_headers,
                          timeout=10)
-        print r.status_code
+        print(r.status_code)
         download_url = json.loads(r.content).get("download-url")
 
         # download the attachment data with GET request
         encrypted_attachment_data = requests.get(download_url).content
-        print "size :: "
-        print file_size
-        print "retrieved size "
-        print len(encrypted_attachment_data)
+        print("size :: ")
+        print(file_size)
+        print("retrieved size ")
+        print(len(encrypted_attachment_data))
         # compare download size with expected file size
         # if len(encrypted_attachment_data) != file_size:
             # raise Exception("Data downloaded not of expected size! Check preDownload step.")
@@ -128,10 +128,10 @@ def receive_large_interactive_payload():
                           timeout=10)
 
         # Write out the Business Chat server response
-        print "%d: %s" % (r.status_code, r.text)
+        print("%d: %s" % (r.status_code, r.text))
 
         # Write out the file
-        print "\nSYSTEM: Writing full response to local file: %s" % attachment_file_name
+        print("\nSYSTEM: Writing full response to local file: %s" % attachment_file_name)
         with open(attachment_file_name, "wb") as attachment_local_file:
             attachment_local_file.write(r.text)
 
