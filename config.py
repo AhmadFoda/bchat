@@ -4,8 +4,7 @@
 BUSINESS_CHAT_SERVER = "https://mspgw-int.push.apple.com/v1"
 
 CSP_ID = "c242a3c7-a0e3-4688-9a03-fc3ecd18f409"
-# BIZ_ID = "e937376b-2bd4-4e33-bade-edaa9fab0ef4"
-BIZ_ID = "aaf411eb-6ee9-44ac-8f21-6151f976e9d1"
+BIZ_ID = "e937376b-2bd4-4e33-bade-edaa9fab0ef4"
 
 SECRET = "yjq7zIrBBlIas7BBIJfbep8aLnvc6r8gEjvOxXHesew="
 
