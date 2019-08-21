@@ -4,6 +4,7 @@ import uuid
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography import utils
+import random
 class BCAuthCrypto:
     """A class containing handlers for ECC algorithm in Python"""
     curve = ec.SECP384R1()
@@ -37,8 +38,8 @@ def generate_binary_key(b64size):
     """Generates a random binary key given the length of the Base64-encoded
         string that
         will be produced."""
-    binarysize = b64size * 6 / 8
-    binaryrand = os.urandom(binarysize)
+    binarysize = int (b64size * 6 / 8)
+    binaryrand =  (os.urandom(binarysize))
     return binaryrand
 def generate_nonce():
     """Generates a nonce for the authentication process."""

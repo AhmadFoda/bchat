@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 
 @app.route("/message", methods=['POST'])
-def receive_large_interactive_payload():
+def receive_large_interactive_payload(r=request):
     # here we are sending and receiving the interactive payload
 
     # Verify the authentication
@@ -44,8 +44,8 @@ def receive_large_interactive_payload():
         abort(403)
 
     # read the Gzip data
-
-    fileobj = io.StringIO(request.data)
+    print(request.data)
+    fileobj = io.BytesIO (request.data)
     uncompressed = gzip.GzipFile(fileobj=fileobj, mode='rb')
 
     try:
@@ -96,12 +96,14 @@ def receive_large_interactive_payload():
         }
         print("pre download headers ==>")
         print(predownload_headers)
+        print(BUSINESS_CHAT_SERVER)
         r = requests.get("%s/preDownload" % BUSINESS_CHAT_SERVER,
                          headers=predownload_headers,
                          timeout=10)
         print(r.status_code)
-        download_url = json.loads(r.content).get("download-url")
 
+        download_url = json.loads(r.content).get("download-url")
+        print(download_url)
         # download the attachment data with GET request
         encrypted_attachment_data = requests.get(download_url).content
         print("size :: ")

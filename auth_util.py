@@ -112,7 +112,7 @@ def generate_binary_key(b64size):
     """Generates a random binary key given the length of the base64 encoded
 string that
     will be produced."""
-    binarysize = b64size * 6 / 8
+    binarysize = int (b64size * 6 / 8)
     binaryrand = os.urandom(binarysize)
     return binaryrand
 def generate_nonce():
@@ -127,5 +127,5 @@ the name of the service."""
     private_number =ec.EllipticCurvePrivateNumbers(utils.int_from_bytes(base64.b64decode(private_key_str), "big"), public_number)
     private_key = private_number.private_key(bc_crypto.backend)
     token = bc_crypto.decrypt(tokenFromPayload, private_key)
-    print "token (decrypted): %s" % token
+    print ("token (decrypted): %s" % token)
     return token

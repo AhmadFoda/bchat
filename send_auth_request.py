@@ -25,7 +25,7 @@ and send the request
     # Generate a private and public key, save them to the database with request_id as the
     # index, keep the public key to use in the payload
     (response_encryption_key, privkey_b64) = generate_pair()
-    print "Save private key for use later, base 64: %s" % privkey_b64
+    print ("Save private key for use later, base 64: %s" % privkey_b64)
     # Also generate a nonce for this request
     state = generate_nonce()
     headers = {
@@ -68,13 +68,13 @@ and send the request
     r = requests.post("%s/authenticate" % BUSINESS_CHAT_SERVER, json=payload,
                       headers=headers,
                       timeout=30)
-    print "Business Chat server return code: %s" % r.status_code
-    print "Business Chat server return code: %s" % r.text
-    print "Send authentication request with parameters"
-    print "request_id: %s" % request_id
-    print "responseEncryptionKey: %s" % response_encryption_key
-    print "nonce (aka state): %s" % state
-    print "private key, base64: %s" % privkey_b64
+    print ("Business Chat server return code: %s" % r.status_code)
+    print ("Business Chat server return code: %s" % r.text)
+    print ("Send authentication request with parameters")
+    print ("request_id: %s" % request_id)
+    print ("responseEncryptionKey: %s" % response_encryption_key)
+    print ("nonce (aka state): %s" % state)
+    print ("private key, base64: %s" % privkey_b64)
     return "ok"
 if __name__ == "__main__":
  destination_id = "urn:mbid:AQAAY63/TIJe/3nF4EvsJeiA+WeopPR92ycuqyjDzc/14u/PdDhLVjieuzb5nPPwFB9u8jXUS/um2flw2Jr5SKGpDHHGstPdM9TyV0Ml5lldZ/nanUpHWMbBn5AwD3FpoqWhOP0t+5oCWvZaMCtdIPNsgFIaZEA="
