@@ -18,7 +18,7 @@ and send the request
     title_to_user = "LinkedIn"
     response_type = "code" # LinkedIn is peculiar here since it is a token
 # but requires this field be set to code
-    scope =["email", "profile"],
+    scope = ["r_basicprofile"]
     client_secret ="MMqypotJqn07fCNI"
     message_id = str(uuid.uuid4())
     request_id = str(uuid.uuid4())
