@@ -52,10 +52,10 @@ def main():
     (response_encryption_key, privkey_b64) = generate_pair()
     # Also generate a nonce for this request
     state = generate_nonce()
-    print "Ready to generate authentication request with parameters"
-    print "request_id: %s" % request_id
-    print "responseEncryptionKey: %s" % response_encryption_key
-    print "nonce (aka state): %s" % state
-    print "private key, base64: %s" % privkey_b64
+    print ("Ready to generate authentication request with parameters")
+    print ("request_id: %s" % request_id)
+    print ("responseEncryptionKey: %s" % response_encryption_key)
+    print ("nonce (aka state): %s" % state)
+    print ("private key, base64: %s" % privkey_b64)
 if __name__ == "__main__":
     main()
