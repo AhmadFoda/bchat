@@ -73,6 +73,7 @@ and send the request
         "v": 1,
         "id": message_id
     }
+    print(payload)
     r = requests.post("%s/authenticate" % BUSINESS_CHAT_SERVER, json=payload,
                       headers=headers,
                       timeout=30)
