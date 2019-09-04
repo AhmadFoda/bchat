@@ -51,7 +51,7 @@ and send the request
                     "responseEncryptionKey": response_encryption_key
                     } },
             "images":{
-                "data":"image_data_encoded",
+                "data":image_data_encoded,
                 "identifier":"1"
             }
         },
