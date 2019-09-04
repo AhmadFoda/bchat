@@ -1,5 +1,6 @@
 import uuid
 import requests
+import base64
 from auth_util import generate_pair, generate_nonce
 from config import BIZ_ID, BUSINESS_CHAT_SERVER, IMESSAGE_EXTENSION_BID
 from jwt_util import get_jwt_token
@@ -16,7 +17,7 @@ and send the request
     # TOKEN URL in Register = https://www.linkedin.com/oauth/v2/accessToken
     # CLIENT IDENTIFIER in Register = <client-identifier-from-your-linkedin-app>process
     title_to_user = "LinkedIn"
-    response_type = "token" # LinkedIn is peculiar here since it is a token
+    response_type = "code" # LinkedIn is peculiar here since it is a token
 # but requires this field be set to code
     scope = ["r_basicprofile"]
     client_secret ="MMqypotJqn07fCNI"
@@ -34,7 +35,9 @@ and send the request
         "id": message_id,
         "Source-Id": BIZ_ID,
         "Destination-Id": destination_id
-}
+        }
+    image_file = open("https://rcs.cequens.net/rita.jpg", "rb")
+    image_data_encoded = base64.b64encode(image_file.read())
     interactive_data = {
         "data": {
             "version": "1.0",
@@ -47,14 +50,19 @@ and send the request
                     "state": state,
                     "responseEncryptionKey": response_encryption_key
                     } },
-            "images": []
+            "images":{
+                "data":image_data_encoded,
+                "identifier":"1"
+            }
         },
         "bid": IMESSAGE_EXTENSION_BID,
         "receivedMessage": {
-            "title": ("Sign In to %s" % title_to_user)
+            "title": ("Sign In to %s" % title_to_user),
+            "imageIdentifier":"1"
         },
         "replyMessage": {
-            "title": "You Signed In"
+            "title": "You Signed In",
+            "imageIdentifier" :"1"
         }
 }
     payload = {
