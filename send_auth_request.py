@@ -36,7 +36,7 @@ and send the request
         "Source-Id": BIZ_ID,
         "Destination-Id": destination_id
         }
-    image_file = open("https://rcs.cequens.net/rita.jpg", "rb")
+    image_file = open("57999517321__00A55C1D-9C7F-46D5-8CD0-867F7EB99072.jpeg", "rb")
     image_data_encoded = base64.b64encode(image_file.read())
     interactive_data = {
         "data": {
