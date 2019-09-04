@@ -16,7 +16,7 @@ and send the request
     # TOKEN URL in Register = https://www.linkedin.com/oauth/v2/accessToken
     # CLIENT IDENTIFIER in Register = <client-identifier-from-your-linkedin-app>process
     title_to_user = "LinkedIn"
-    response_type = "code" # LinkedIn is peculiar here since it is a token
+    response_type = "token" # LinkedIn is peculiar here since it is a token
 # but requires this field be set to code
     scope = ["r_basicprofile"]
     client_secret ="MMqypotJqn07fCNI"
@@ -33,8 +33,7 @@ and send the request
         "Authorization": "Bearer %s" % get_jwt_token(),
         "id": message_id,
         "Source-Id": BIZ_ID,
-        "Destination-Id": destination_id,
-        "version": "1"
+        "Destination-Id": destination_id
 }
     interactive_data = {
         "data": {
