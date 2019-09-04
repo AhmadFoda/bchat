@@ -34,7 +34,7 @@ and send the request
         "Authorization": "Bearer %s" % get_jwt_token(),
         "id": message_id,
         "Source-Id": BIZ_ID,
-        "Destination-Id": opaque_id
+        "Destination-Id": destination_id
         }
     image_file = open("57999517321__00A55C1D-9C7F-46D5-8CD0-867F7EB99072.jpeg", "rb")
     image_data_encoded = base64.b64encode(image_file.read())
@@ -54,12 +54,10 @@ and send the request
         },
         "bid": IMESSAGE_EXTENSION_BID,
         "receivedMessage": {
-            "title": ("Sign In to %s" % title_to_user),
-            "imageIdentifier":"1"
+            "title": ("Sign In to %s" % title_to_user)
         },
         "replyMessage": {
-            "title": "You Signed In",
-            "imageIdentifier" :"1"
+            "title": "You Signed In"
         }
 }
     payload = {
