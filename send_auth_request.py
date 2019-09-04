@@ -19,7 +19,7 @@ and send the request
     title_to_user = "LinkedIn"
     response_type = "code" # LinkedIn is peculiar here since it is a token
 # but requires this field be set to code
-    scope = ["email", "profile"]
+    scope = ["r_basicprofile"]
     client_secret ="MMqypotJqn07fCNI"
     message_id = str(uuid.uuid4())
     request_id = str(uuid.uuid4())
@@ -36,8 +36,8 @@ and send the request
         "Source-Id": BIZ_ID,
         "Destination-Id": destination_id
         }
-    image_file = open("57999517321__00A55C1D-9C7F-46D5-8CD0-867F7EB99072.jpeg", "rb")
-    image_data_encoded = base64.b64encode(image_file.read())
+    # image_file = open("", "rb")
+    image_data_encoded = base64.b64encode('57999517321__00A55C1D-9C7F-46D5-8CD0-867F7EB99072.jpeg')
     interactive_data = {
         "data": {
             "version": "1.0",
