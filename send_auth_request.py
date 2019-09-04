@@ -50,10 +50,7 @@ and send the request
                     "state": state,
                     "responseEncryptionKey": response_encryption_key
                     } },
-            "images":{
-                "data":image_data_encoded,
-                "identifier":"1"
-            }
+            "images":[]
         },
         "bid": IMESSAGE_EXTENSION_BID,
         "receivedMessage": {
@@ -86,5 +83,5 @@ and send the request
     print ("private key, base64: %s" % privkey_b64)
     return "ok"
 if __name__ == "__main__":
- destination_id = "urn:mbid:AQAAY63/TIJe/3nF4EvsJeiA+WeopPR92ycuqyjDzc/14u/PdDhLVjieuzb5nPPwFB9u8jXUS/um2flw2Jr5SKGpDHHGstPdM9TyV0Ml5lldZ/nanUpHWMbBn5AwD3FpoqWhOP0t+5oCWvZaMCtdIPNsgFIaZEA="
+ destination_id = "urn:mbid:AQAAY/XNCBgTsfntER8UH0N1CgOSee3IwaMP6P6umt7Ji2cvPUlwC8kAnqAwXoBt9WKbUy5y4dCSGAP/d2tGii82bBMSiSqBw0ogQ/Xo0qzzrykVT0b0mIpXVpFv9SRhYo280TRpmo5yTfuLQg74wiCdzAvBMP4="
  authenticate_user(destination_id)
