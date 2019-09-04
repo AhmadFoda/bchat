@@ -19,7 +19,7 @@ and send the request
     title_to_user = "LinkedIn"
     response_type = "token" # LinkedIn is peculiar here since it is a token
 # but requires this field be set to code
-    scope =  ["email", "profile"]
+    scope = ["r_basicprofile"]
     client_secret ="MMqypotJqn07fCNI"
     message_id = str(uuid.uuid4())
     request_id = str(uuid.uuid4())
@@ -50,19 +50,16 @@ and send the request
                     "state": state,
                     "responseEncryptionKey": response_encryption_key
                     } },
-            "images":{
-            "data":image_data_encoded,
-            "identifier":"1"
-            }
+            "images":[]
         },
         "bid": IMESSAGE_EXTENSION_BID,
         "receivedMessage": {
             "title": ("Sign In to %s" % title_to_user),
-            "imageIdentifier":"1"
+            "style":"icon"
         },
         "replyMessage": {
             "title": "You Signed In",
-            "imageIdentifier":"1"
+            "style":"icon"
         }
 }
     payload = {
