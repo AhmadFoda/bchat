@@ -33,7 +33,8 @@ and send the request
         "Authorization": "Bearer %s" % get_jwt_token(),
         "id": message_id,
         "Source-Id": BIZ_ID,
-        "Destination-Id": destination_id
+        "Destination-Id": destination_id,
+        "version": "1"
 }
     interactive_data = {
         "data": {
