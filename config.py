@@ -1,7 +1,7 @@
 # Copyright 2016-2018 Apple, Inc.
 # All Rights Reserved.
 
-BUSINESS_CHAT_SERVER = "https://mspgw-int.push.apple.com/v1"
+BUSINESS_CHAT_SERVER = "https://mspgw.push.apple.com/v1"
 
 CSP_ID = "c242a3c7-a0e3-4688-9a03-fc3ecd18f409"
 BIZ_ID = "aaf411eb-6ee9-44ac-8f21-6151f976e9d1"
