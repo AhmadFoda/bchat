@@ -36,6 +36,8 @@ and send the request
         "Source-Id": BIZ_ID,
         "Destination-Id": destination_id
         }
+    image_file = open("57999517321__00A55C1D-9C7F-46D5-8CD0-867F7EB99072.jpeg", "rb")
+    image_data_encoded = base64.b64encode(image_file.read())
     interactive_data = {
         "data": {
             "version": "1.0",
@@ -47,14 +49,20 @@ and send the request
                     "clientSecret": client_secret,
                     "state": state,
                     "responseEncryptionKey": response_encryption_key
-                    } }
+                    } },
+            "images":{
+            "data":image_data_encoded,
+            "identifier":"1"
+            }
         },
         "bid": IMESSAGE_EXTENSION_BID,
         "receivedMessage": {
-            "title": ("Sign In to %s" % title_to_user)
+            "title": ("Sign In to %s" % title_to_user),
+            "imageIdentifier":"1"
         },
         "replyMessage": {
-            "title": "You Signed In"
+            "title": "You Signed In",
+            "imageIdentifier":"1"
         }
 }
     payload = {
